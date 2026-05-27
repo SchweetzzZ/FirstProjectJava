@@ -14,9 +14,9 @@ public class User implements Serializable {
 
     public User(){}
 
-    public User(String name, Long id, String phone, String email, String password) {
-        this.name = name;
+    public User(Long id, String name, String phone, String email, String password) {
         this.id = id;
+        this.name = name;
         this.phone = phone;
         this.email = email;
         this.password = password;
@@ -73,5 +73,4 @@ public class User implements Serializable {
     public int hashCode() {
         return Objects.hashCode(getId());
     }
-
 }
