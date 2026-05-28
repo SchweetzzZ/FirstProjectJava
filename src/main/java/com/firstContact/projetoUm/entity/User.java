@@ -1,9 +1,13 @@
 package com.firstContact.projetoUm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_users")
@@ -18,6 +22,14 @@ public class User implements Serializable {
     private String phone;
     private String email;
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    public List<Order> orders = new ArrayList<>();
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 
     public User(){}
 
