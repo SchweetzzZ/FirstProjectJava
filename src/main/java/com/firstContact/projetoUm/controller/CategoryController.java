@@ -1,4 +1,4 @@
-package com.firstContact.projetoUm.resources;
+package com.firstContact.projetoUm.controller;
 
 import com.firstContact.projetoUm.entity.Category;
 import com.firstContact.projetoUm.services.CategoryService;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categories")
-public class CategoryResource {
+public class CategoryController {
 
     @Autowired
     private CategoryService service;

@@ -20,7 +20,7 @@ public class Order implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-NN-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
     private Integer orderStatus;
@@ -65,7 +65,7 @@ public class Order implements Serializable {
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
-        if(orderStatus != null) {
+        if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
     }
@@ -76,10 +76,6 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
-    }
-
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public void setItems(Set<OrderItem> items) {
@@ -105,6 +101,8 @@ public class Order implements Serializable {
         }
         return sum;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

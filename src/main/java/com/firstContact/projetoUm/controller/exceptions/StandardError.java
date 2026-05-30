@@ -1,4 +1,4 @@
-package com.firstContact.projetoUm.resources.exceptions;
+package com.firstContact.projetoUm.controller.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;

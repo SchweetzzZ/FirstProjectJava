@@ -3,6 +3,7 @@ package com.firstContact.projetoUm.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,7 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_product")
 public class Product implements Serializable {
-    public static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +32,9 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items = new HashSet<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductImages> images = new HashSet<>();
+
     public Product () {}
 
     public Product(Long id, String name, String description, Double price, String imgUrl){
@@ -38,7 +43,7 @@ public class Product implements Serializable {
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
-    };
+    }
 
     public Long getId() {
         return id;
@@ -82,6 +87,20 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public Set<ProductImages> getImages() {
+        return images;
+    }
+
+    public void addImages(ProductImages image) {
+        this.images.add(image);
+        image.setProduct(this);
+    }
+
+    public void removeImages(ProductImages image) {
+        this.images.remove(image);
+        image.setProduct(null);
     }
 
     @JsonIgnore
