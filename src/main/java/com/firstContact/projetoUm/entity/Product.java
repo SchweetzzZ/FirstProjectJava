@@ -21,12 +21,9 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private Double price;
-    private String imgUrl;
 
     @ManyToMany
-    @JoinTable(name = "tb_product_category",
-            joinColumns = @JoinColumn( name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     @OneToMany(mappedBy = "id.product")
@@ -35,14 +32,15 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ProductImages> images = new HashSet<>();
 
-    public Product () {}
+    public Product() {
+    }
 
-    public Product(Long id, String name, String description, Double price, String imgUrl){
+    public Product(Long id, String name, String description, Double price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.imgUrl = imgUrl;
+
     }
 
     public Long getId() {
@@ -77,14 +75,6 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     public Set<Category> getCategories() {
         return categories;
     }
@@ -112,10 +102,10 @@ public class Product implements Serializable {
         return set;
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Product product = (Product) o;
         return Objects.equals(id, product.id);
     }

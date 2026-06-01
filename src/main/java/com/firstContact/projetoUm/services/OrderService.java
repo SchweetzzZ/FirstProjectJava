@@ -3,6 +3,7 @@ package com.firstContact.projetoUm.services;
 import com.firstContact.projetoUm.entity.Dto.OrderPaymentResponseDTO;
 import com.firstContact.projetoUm.entity.Order;
 import com.firstContact.projetoUm.entity.OrderItem;
+import com.firstContact.projetoUm.entity.Payment;
 import com.firstContact.projetoUm.entity.Product;
 import com.firstContact.projetoUm.entity.enums.OrderStatus;
 import com.firstContact.projetoUm.repositories.OrderItemRepository;
@@ -66,7 +67,11 @@ public class OrderService {
         // 2. Altera o status usando o seu Enum (2 - PAID)
         order.setOrderStatus(OrderStatus.PAID);
 
-        // 3. Salva o pedido atualizado de volta no banco
+        // 3. Cria e associa o pagamento ao pedido (salva no banco em cascata)
+        Payment payment = new Payment(null, java.time.Instant.now(), order);
+        order.setPayment(payment);
+
+        // 4. Salva o pedido atualizado de volta no banco
         repository.save(order);
     }
 
