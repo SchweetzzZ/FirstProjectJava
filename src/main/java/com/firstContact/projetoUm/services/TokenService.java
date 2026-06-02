@@ -14,7 +14,7 @@ import java.time.Instant;
 @Service
 public class TokenService {
 
-    private String secret = "muitosecretajesusamadoAvemaria";
+    private String secret = "${tokenSecret}";
 
     public String generateToken(User user) {
         try{

@@ -18,10 +18,10 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    private Set<Product> products = new HashSet<>();
-
     @JsonIgnore
     @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
+
     public Set<Product> getProducts() {return products;}
 
     public Category(){
