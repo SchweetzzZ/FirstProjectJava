@@ -25,11 +25,11 @@ public class Comments implements Serializable {
     private Instant moment;
 
     @ManyToOne
-    @JoinTable(name = "client.id")
+    @JoinColumn(name = "client_id")
     private User client;
 
     @ManyToOne
-    @JoinColumn(name = "product.id")
+    @JoinColumn(name = "product_id")
     private Product products;
 
     public Comments(){};
