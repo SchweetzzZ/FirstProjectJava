@@ -29,7 +29,6 @@ public class OrderController {
         return ResponseEntity.ok().body(objeto);
     }
 
-    // 🌟 O MÉTODO QUE FALTAVA PARA CONECTAR COM A STRIPE:
     @PostMapping
     public ResponseEntity<OrderPaymentResponseDTO> insert(@RequestBody Order obj) {
         // Envia o pedido recebido do front para o service processar tudo

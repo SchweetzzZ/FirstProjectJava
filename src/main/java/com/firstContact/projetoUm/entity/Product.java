@@ -32,15 +32,28 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ProductImages> images = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Double price) {
+    public Product(Long id, String name, String description, Double price, User user) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.user = user;
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
