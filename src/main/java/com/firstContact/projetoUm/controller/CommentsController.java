@@ -13,7 +13,7 @@ import software.amazon.awssdk.regions.servicemetadata.ServerlessrepoServiceMetad
 import java.net.URI;
 
 @RestController
-@RequestMapping(name = "/comments")
+@RequestMapping("/comments")
 public class CommentsController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class CommentsController {
         return ResponseEntity.created(uri).body(comments);
     }
 
-    @DeleteMapping(value = "/{id")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         service.deleteComment(id);
         return ResponseEntity.noContent().build();
